@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}"> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('new_post') }}">Create new post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+            </li>
+        </ul>
+    </nav>
+    {% block content%}
+
+    {% endblock%}
+
+    <footer>
+        <p>About info </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    
+</head>
+
+
+<body>
+{% extends "layouts.html" %}
+{% block content%}
+
+ <style>
+  body {
+         background-color: #303030;
+         color: white;
+      }
+
+ </style>
+<div class="card container mt-2 ">
+ <p>{{email}}</p>
+
+ <p>{{password}}</p>
+
+ <p>{{name}}</p>
+
+ <p>{{age}}</p>
+
+ <p>{{username}}</p>
+
+ <p>{{id}}</p>
+</div>
+
+
+<div class="card container mt-4">
+ {% if not posts: %}
+     <h2>There are no posts</h2>
+ {%else:%}
+  {% for post in posts: %}
+     <p>Text: {{post}}</p>
+  {%endfor%}
+ {%endif%}
+</div>
+
+
+
+
+{% endblock%}
+
+</body>
+
+
+
+</html>
