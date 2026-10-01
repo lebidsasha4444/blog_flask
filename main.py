@@ -48,7 +48,7 @@ def profile():
     user = get_profile(username=session['username'])
     posts = get_post(user_id=session['user_id'])
     print(posts)
-    print(type(posts[0]))
+
 
 
 
