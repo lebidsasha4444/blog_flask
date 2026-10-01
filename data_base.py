@@ -1,4 +1,3 @@
-import email
 import sqlite3
 
 conn = sqlite3.connect('data.db')
@@ -15,8 +14,6 @@ CREATE TABLE IF NOT EXISTS users (
 )
 ''')
 
-
-
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS posts (
      id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -29,6 +26,8 @@ CREATE TABLE IF NOT EXISTS posts (
 
 conn.commit()
 conn.close()
+
+
 def get_post(user_id):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
@@ -36,6 +35,7 @@ def get_post(user_id):
     post = cursor.fetchall()
     conn.close()
     return post
+
 
 def get_posts():
     conn = sqlite3.connect('data.db')
@@ -45,11 +45,11 @@ def get_posts():
     conn.close()
     return posts
 
+
 def make_post(title,content,user_id):
     with sqlite3.connect('data.db') as conn:
         cursor = conn.cursor()
         cursor.execute('''INSERT INTO posts (title,content,user_id) VALUES (?,?,?) ''', (title,content,user_id))
-
 
 
 def get_login(username):
@@ -73,6 +73,7 @@ def get_profile(username):
     conn.close()
     return profile
 
+
 def create_user(username,password,email):
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
@@ -81,5 +82,3 @@ def create_user(username,password,email):
     conn.commit()
     conn.close()
     return user_id
-
-
