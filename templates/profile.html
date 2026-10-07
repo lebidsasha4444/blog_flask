@@ -19,17 +19,17 @@
 
  </style>
 <div class="card container mt-2 ">
- <p>{{email}}</p>
 
- <p>{{password}}</p>
+  <p>{{username}}</p>
+  {% if name: %}
+    <p>{{name}}</p>
+  {%endif%}
 
- <p>{{name}}</p>
+  {% if age: %}
+    <p>{{age}}</p>
+  {%endif%}
+  <p>{{email}}</p>
 
- <p>{{age}}</p>
-
- <p>{{username}}</p>
-
- <p>{{id}}</p>
 </div>
 
 
