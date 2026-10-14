@@ -1,29 +1,27 @@
 {% extends "layouts.html" %}
-
+{% block title %}Create a post | BlogSpace{% endblock %}
 {% block content %}
-<style>
-  body {
-         background-color: #303030;
-         color: white;
-      }
+<div class="page-shell">
+    <section class="surface-card post-form-card">
+        <span class="eyebrow">Create something new</span>
+        <h1 class="page-heading">Share your thoughts.</h1>
+        <p class="page-subtitle">Put an idea into words and share it with the community.</p>
 
- </style>
+        {% if error %}
+            <div class="alert alert-danger mt-4 mb-0" role="alert">{{ error }}</div>
+        {% endif %}
 
-<div class="mb-8 pd-6 container">
-    <form method="POST">
-        <h1 calss="mb-3"> Post </h1>
-        <input class="mb-3 form-control" type="text" name="title" placeholder="title">
-        <textarea class="mb-3 form-control" type="text" name="content" placeholder="share your thoughts"></textarea>
-        <button class="btn btn-primary" type="submit">post</button>
-    </form>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="visually-hidden" for="post-title">Post title</label>
+                <input class="form-control" id="post-title" type="text" name="title" placeholder="Give your post a title" aria-label="Post title">
+            </div>
+            <div class="mb-4">
+                <label class="visually-hidden" for="post-content">Post content</label>
+                <textarea class="form-control" id="post-content" name="content" placeholder="What would you like to share?" aria-label="Post content"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Publish post</button>
+        </form>
+    </section>
 </div>
-{% if error %}
-    <div class="container">
-        <div class="alert alert-danger">
-            <p>{{ error }}</p>
-        </div>
-    </div>
-{% endif %}
-
 {% endblock %}
-

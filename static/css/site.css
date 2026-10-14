@@ -1,0 +1,308 @@
+:root {
+    color-scheme: dark;
+    --page-bg: #1b1d29;
+    --surface: rgba(20, 24, 35, 0.9);
+    --surface-raised: rgba(255, 255, 255, 0.045);
+    --border: rgba(255, 255, 255, 0.09);
+    --text: #f3f4f6;
+    --muted: #aab4c5;
+    --accent: #a78bfa;
+    --accent-strong: #8b5cf6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 12% 0%, rgba(139, 92, 246, 0.16), transparent 34rem),
+        radial-gradient(ellipse at 90% 18%, rgba(236, 72, 153, 0.1), transparent 30rem),
+        linear-gradient(135deg, #1f1f2e 0%, #2c2f3b 100%);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+a {
+    color: #c4b5fd;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #e9d5ff;
+}
+
+.site-navbar {
+    background: rgba(16, 18, 28, 0.78);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+}
+
+.site-navbar .navbar-brand {
+    color: #fff;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+}
+
+.site-navbar .navbar-brand span {
+    color: var(--accent);
+}
+
+.site-navbar .navbar-nav {
+    gap: 0.35rem;
+}
+
+.site-navbar .nav-link {
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    color: #cbd5e1;
+    transition: color 160ms ease, background-color 160ms ease;
+}
+
+.site-navbar .nav-link:hover,
+.site-navbar .nav-link:focus-visible {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.site-main {
+    flex: 1;
+    width: 100%;
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.page-shell {
+    width: min(100% - 2rem, 980px);
+    margin-inline: auto;
+}
+
+.surface-card {
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: var(--surface);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(8px);
+}
+
+.page-heading {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 750;
+    letter-spacing: -0.045em;
+}
+
+.page-subtitle {
+    margin: 0.55rem 0 0;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.8rem;
+    color: #c4b5fd;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.eyebrow::before {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    content: "";
+}
+
+.btn-primary {
+    border: 0;
+    background: linear-gradient(120deg, #7c3aed, #a855f7);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.22);
+    font-weight: 650;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background: linear-gradient(120deg, #6d28d9, #9333ea);
+}
+
+.form-control {
+    min-height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    background-color: rgba(9, 12, 20, 0.5);
+    color: #f8fafc;
+}
+
+.form-control::placeholder {
+    color: #8290a4;
+}
+
+.form-control:focus {
+    border-color: rgba(167, 139, 250, 0.75);
+    background-color: rgba(9, 12, 20, 0.72);
+    color: #fff;
+    box-shadow: 0 0 0 0.22rem rgba(139, 92, 246, 0.18);
+}
+
+textarea.form-control {
+    min-height: 190px;
+    resize: vertical;
+}
+
+.site-footer {
+    padding: 1.25rem 1rem;
+    border-top: 1px solid var(--border);
+    color: #8792a5;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+.auth-shell {
+    width: min(100% - 2rem, 460px);
+    margin: auto;
+}
+
+.auth-card {
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.auth-card .page-heading {
+    text-align: center;
+}
+
+.auth-card .page-subtitle {
+    margin-bottom: 1.75rem;
+    text-align: center;
+}
+
+.auth-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.4rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.home-hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.6rem, 5vw, 3rem);
+    margin-bottom: 2rem;
+}
+
+.home-hero::after {
+    position: absolute;
+    top: -5rem;
+    right: -3rem;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.28), transparent 70%);
+    content: "";
+    pointer-events: none;
+}
+
+.home-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+}
+
+.home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.posts-section {
+    padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+.posts-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.posts-section-title {
+    margin: 0;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.feed-post {
+    padding: 1.2rem 1.3rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
+    background: var(--surface-raised);
+}
+
+.feed-post + .feed-post {
+    margin-top: 0.85rem;
+}
+
+.feed-post h3 {
+    margin: 0 0 0.55rem;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 650;
+}
+
+.feed-post p {
+    margin: 0;
+    color: #d1d9e6;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.empty-state {
+    padding: 2rem 1rem;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    border-radius: 15px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.post-form-card {
+    max-width: 760px;
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    margin-inline: auto;
+}
+
+.post-form-card form {
+    margin-top: 1.75rem;
+}
+
+.post-form-card .btn {
+    min-width: 130px;
+}
+
+@media (max-width: 575.98px) {
+    .site-navbar .navbar-nav {
+        padding-top: 0.5rem;
+    }
+
+    .posts-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

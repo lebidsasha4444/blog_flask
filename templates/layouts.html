@@ -2,29 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Blog{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/site.css') }}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('home') }}"> Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('new_post') }}">Create new post</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark site-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">Blog<span>Space</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="site-navigation">
+                <ul class="navbar-nav ms-auto">
+                    {% if user_id %}
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('new_post') }}">Create a post</a>
+                    
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+                    </li>
+                    {% endif %}
+                    
+                </ul>
+            </div>
+        </div>
     </nav>
-    {% block content%}
-
-    {% endblock%}
-
-    <footer>
-        <p>About info </p>
+    <main class="site-main">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+        <p>Share your thoughts. Find your community.</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,24 +1,37 @@
 {% extends "layouts.html" %}
+{% block title %}Home | BlogSpace{% endblock %}
+{% block content %}
+<div class="page-shell">
+    <section class="surface-card home-hero">
+        <div class="home-hero-content">
+            <span class="eyebrow">Your space to share</span>
+            <h1 class="page-heading">Stories start with a thought.</h1>
+            <p class="page-subtitle">Welcome to BlogSpace. Read what the community is sharing, or publish something of your own.</p>
+            <div class="home-actions">
+                <a class="btn btn-primary" href="{{ url_for('new_post') }}">Write a post</a>
+                <a class="btn btn-outline-light" href="{{ url_for('profile') }}">View your profile</a>
+            </div>
+        </div>
+    </section>
 
-{% block content%}
- <style>
-  body {
-         background-color: #303030;
-         color: white;
-      }
+    <section class="surface-card posts-section">
+        <div class="posts-section-header">
+            <div>
+                <span class="eyebrow">The community</span>
+                <h2 class="posts-section-title">Recent posts</h2>
+            </div>
+        </div>
 
- </style>
-
-<h1>Log In Successful</h1>
-<p>Welcome,you can view your posts in your <a class="nav-linh" href="{{ url_for('profile') }}">profile</a> </p>
-
-<ul class="navbar-nav">
-  <li class="nav-item">
-
-  </li>
-</ul>
-
-
-
-
-{% endblock%}
+        {% if not posts %}
+            <div class="empty-state">No posts yet. Be the first to share an idea.</div>
+        {% else %}
+            {% for post in posts %}
+                <article class="feed-post">
+                    <h3>{{ post[1] }}</h3>
+                    <p>{{ post[2] if post[2] else 'No content provided.' }}</p>
+                </article>
+            {% endfor %}
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
