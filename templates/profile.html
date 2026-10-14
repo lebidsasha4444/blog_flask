@@ -1,55 +1,181 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-    
-</head>
-
-
-<body>
 {% extends "layouts.html" %}
-{% block content%}
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #1f1f2e 0%, #2c2f3b 100%);
+        color: #f3f4f6;
+        min-height: 100vh;
+    }
 
- <style>
-  body {
-         background-color: #303030;
-         color: white;
-      }
+    .profile-shell {
+        max-width: 980px;
+        margin: 40px auto;
+        padding: 0 16px;
+    }
 
- </style>
-<div class="card container mt-2 ">
+    .profile-card {
+        background: rgba(20, 24, 35, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 22px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        padding: 28px;
+        backdrop-filter: blur(6px);
+    }
 
-  <p>{{username}}</p>
-  {% if name: %}
-    <p>{{name}}</p>
-  {%endif%}
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 20px;
+    }
 
-  {% if age: %}
-    <p>{{age}}</p>
-  {%endif%}
-  <p>{{email}}</p>
+    .avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 700;
+        box-shadow: 0 10px 25px rgba(139, 92, 246, 0.35);
+    }
 
+    .profile-name {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .profile-handle {
+        color: #cbd5e1;
+        font-size: 1rem;
+        margin: 4px 0 0;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .info-item {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 16px 18px;
+    }
+
+    .info-label {
+        color: #94a3b8;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .info-value {
+        margin: 0;
+        font-size: 1.08rem;
+        font-weight: 500;
+    }
+
+    .posts-card {
+        background: rgba(15, 20, 29, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 20px;
+        padding: 24px 28px;
+        margin-top: 28px;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    .section-title {
+        margin: 0 0 18px;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .post-item {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 14px;
+    }
+
+    .post-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .post-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+
+    .post-content {
+        color: #dbe4f0;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 24px;
+        color: #cbd5e1;
+        border: 1px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+    }
+</style>
+
+<div class="profile-shell">
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="avatar">{{ username[0]|upper if username else 'U' }}</div>
+            <div>
+                <h1 class="profile-name">{{ username }}</h1>
+                <p class="profile-handle">{{ name if name else 'No display name set' }}</p>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            {% if name %}
+                <div class="info-item">
+                    <div class="info-label">Name</div>
+                    <p class="info-value">{{ name }}</p>
+                </div>
+            {% endif %}
+
+            {% if age %}
+                <div class="info-item">
+                    <div class="info-label">Age</div>
+                    <p class="info-value">{{ age }}</p>
+                </div>
+            {% endif %}
+
+            <div class="info-item">
+                <div class="info-label">Email</div>
+                <p class="info-value">{{ email }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="posts-card">
+        <h2 class="section-title">Posts</h2>
+
+        {% if not posts %}
+            <div class="empty-state">There are no posts yet.</div>
+        {% else %}
+            {% for post in posts %}
+                <div class="post-item">
+                    <div class="post-title">{{ post[1] }}</div>
+                    <p class="post-content">{{ post[2] if post[2] else 'No content provided.' }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 </div>
-
-
-<div class="card container mt-4">
- {% if not posts: %}
-     <h2>There are no posts</h2>
- {%else:%}
-  {% for post in posts: %}
-     <p>Text: {{post}}</p>
-  {%endfor%}
- {%endif%}
-</div>
-
-
-
-
-{% endblock%}
-
-</body>
-
-
-
-</html>
+{% endblock %}
