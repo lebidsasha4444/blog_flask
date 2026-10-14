@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-
+import os
+from dotenv import load_dotenv
 from data_base import get_login, get_profile, create_user, make_post, get_posts, get_post
 
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = "..."
+app.secret_key = os.getenv("SECRET_KEY")
 users = [["rick astley","123"]]
 
 
@@ -76,4 +79,4 @@ def register():
     return render_template('register.html',error=error)
 
 
-app.run(debug=True)
+app.run(host=os.getenv("HOST"), debug=os.getenv("DEBUG"))
